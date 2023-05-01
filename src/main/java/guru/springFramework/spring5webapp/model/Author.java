@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -66,6 +67,34 @@ public class Author {
 
     public void setBooks(Set<Book> books) {
         this.books = books;
+    }
+
+    @Override
+    public String toString() {
+        return "Author{" + "id=" + id + ", firstName=" + firstName + 
+                ", lastName=" + lastName + ", books=" + books + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 37 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Author other = (Author) obj;
+        return Objects.equals(this.id, other.id);
     }
 
 }
