@@ -19,7 +19,7 @@ import java.util.Set;
  * @author danie
  */
 @Entity
-class Book {
+public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
