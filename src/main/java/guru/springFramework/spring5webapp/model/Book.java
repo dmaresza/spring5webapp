@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -27,6 +28,8 @@ public class Book {
     private Long id;
     private String title;
     private String isbn;
+    @ManyToOne
+    private Publisher publisher;
     @ManyToMany
     @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "author_id"))
@@ -64,6 +67,14 @@ public class Book {
         this.isbn = isbn;
     }
 
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
+    }
+
     public Set<Author> getAuthors() {
         return authors;
     }
@@ -74,8 +85,8 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book{" + "id=" + id + ", title=" + title + 
-                ", isbn=" + isbn + ", authors=" + authors + '}';
+        return "Book{" + "id=" + id + ", title=" + title
+                + ", isbn=" + isbn + ", authors=" + authors + '}';
     }
 
     @Override
